@@ -13,11 +13,11 @@ return require('packer').startup(function(use)
 	}
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.8',
-		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use { "ellisonleao/gruvbox.nvim" }
+    use('fenetikm/falcon')
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use('nvim-treesitter/nvim-treesitter-context');
 
 	use('neovim/nvim-lspconfig')
 	use('hrsh7th/nvim-cmp')
@@ -26,4 +26,16 @@ return require('packer').startup(function(use)
 	use('mason-org/mason-lspconfig.nvim')
 	use('L3MON4D3/LuaSnip')
   use('VonHeikemen/lsp-zero.nvim')
+  use('ThePrimeagen/harpoon')
+use {
+  "folke/flash.nvim",
+  config = function()
+    require("flash").setup({})
+    -- keymap per jump con s
+    vim.keymap.set({ "n", "x", "o" }, "s", function()
+      require("flash").jump()
+    end, { desc = "Flash jump" })
+  end,
+}
 end)
+
